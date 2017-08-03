@@ -50,7 +50,7 @@ func FractionalPart(number *big.Float) (*big.Float) {
 // written in specified base, limited in length to digits
 func ToStringBase(number *big.Float, base int, length int) (string, error) {
 	if base < 2 {
-		return nil, errors.New("Base must be greater than or equal to 2")
+		return "", errors.New("Base must be greater than or equal to 2")
 	}
 
 	floatBase := IntToFloat(base)
