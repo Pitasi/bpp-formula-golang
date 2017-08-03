@@ -48,12 +48,16 @@ func FractionalPart(number *big.Float) (*big.Float) {
 
 // ToStringBase returns a string representing fractional part of number,
 // written in specified base, limited in length to digits
-func ToStringBase(number *big.Float, base int, digits int) (string, error) {
+func ToStringBase(number *big.Float, base int, length int) (string, error) {
+	if base < 2 {
+		return nil, errors.New("Base must be greater than or equal to 2")
+	}
+
 	floatBase := IntToFloat(base)
 	tmp := new(big.Float).Copy(number)
-	res := make([]byte, digits)
+	res := make([]byte, length)
 
-	for i := 0; i < digits && tmp.Sign() != 0; i++ {
+	for i := 0; i < length && tmp.Sign() != 0; i++ {
 		frac := FractionalPart(tmp)
 		tmp = tmp.Mul(floatBase, frac)
 		whole := WholePart(tmp)
@@ -74,7 +78,7 @@ func ModPow(b int, n int, k int) (int64, error) {
 	// TODO: usare meno moltiplicazioni
 
 	if ( k < 1 ) {
-		return -1, errors.New("Modulo must be greater or equal than 1")
+		return -1, errors.New("Modulo must be greater than or equal to 1")
 	}
 
     if ( k == 1 ) {

@@ -5,9 +5,6 @@ import (
 	"testing"
 )
 
-/*
- * Little test for veryfying 128 bits float are working as intended
- */
 func TestEnvFloat(t *testing.T)() {
 	v49 := new(big.Float).SetInt64(49)
 	v1	:= new(big.Float).SetInt64(1)
