@@ -13,7 +13,7 @@ func TestS(t *testing.T)() {
 	tests := map[int]map[string]string{
 		0: {
 			"expected":	"0.1810395338014360678534893462",
-			"calc":		(S(1, 1, d).Text('f', 30))[0:30],
+			"calc":		S(1, 1, d).Text('f', 30)[0:30],
 		},
 		1: {
 			"expected":	"0.7760655498078074613722975943",
