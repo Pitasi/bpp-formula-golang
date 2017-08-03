@@ -76,6 +76,13 @@ func TestFractionalPart(t *testing.T)() {
 	if (expected.Cmp(frac) != 0) {
 		t.Error("Expected", expected, "got", frac)
 	}
+
+	x = new(big.Float).SetFloat64(-16.25)
+	expected = new(big.Float).SetFloat64(0.75)
+	frac = FractionalPart(x)
+	if (expected.Cmp(frac) != 0) {
+		t.Error("Expected", expected, "got", frac)
+	}
 }
 
 func TestToStringBase(t *testing.T)() {
