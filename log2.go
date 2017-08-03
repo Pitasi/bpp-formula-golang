@@ -11,26 +11,27 @@ func Log2(digit int) (*big.Float) {
 	k := 1
 	res := big.NewFloat(0).SetPrec(128)
 
+	// First summation (from 1 to d)
 	for k <= digit {
-		modpow, err := ModPow(2, digit-k, k)
+		numerator, err := ModPow(2, digit-k, k)
 		if (err != nil) {
 			// TODO: handle err
 		}
-		quotient := new(big.Float).SetPrec(128).
-			Quo(Int64ToFloat(modpow), IntToFloat(k)) // quotient = modpow/k
-		res.Add(res, quotient)
+		tmpRes := new(big.Float).SetPrec(128).
+			Quo(Int64ToFloat(numerator), IntToFloat(k)) // quotient = modpow/k
+		res.Add(res, tmpRes)
 		k++
 	}
 	res = FractionalPart(res)
 
+	// Seconds summation (from d+1 to infinite/precision)
 	floatPrecision, _ := new(big.Float).SetString(PRECISION)
-	diff := IntToFloat(1)
-	for diff.Cmp(floatPrecision) >= 0 {
-		floatK := IntToFloat(k)
-		pow := math.Pow(2, float64(digit-k))
-		floatPow := big.NewFloat(pow)
-		diff.Quo(floatPow, floatK)
-		res.Add(res, diff)
+	delta := IntToFloat(1)
+	for delta.Cmp(floatPrecision) >= 0 {
+		denominator := IntToFloat(k)
+		numerator := big.NewFloat(math.Pow(2, float64(digit-k)))
+		delta.Quo(numerator, denominator)
+		res.Add(res, delta)
 		k++
 	}
 

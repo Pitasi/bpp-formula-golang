@@ -30,7 +30,7 @@ func Summation(j int, d int) (*big.Float) {
 	k := 0
 	res := IntToFloat(0)
 
-	// First loop
+	// First summation (from 1 to d)
 	for k <= d {
 		denominator := (8*k)+j
 		numerator, err := ModPow(16, d-k, denominator)
@@ -44,14 +44,14 @@ func Summation(j int, d int) (*big.Float) {
 	}
 	res = FractionalPart(res)
 
-	// Second loop
+	// Seconds summation (from d+1 to infinite/precision)
 	floatPrecision, _ := new(big.Float).SetPrec(128).SetString(PRECISION)
-	diff := IntToFloat(1)
-	for diff.Cmp(floatPrecision) >= 0 {
+	delta := IntToFloat(1)
+	for delta.Cmp(floatPrecision) >= 0 {
 		denominator := (8*k)+j
 		numerator := math.Pow(16, float64(d-k))
-		diff.Quo(big.NewFloat(numerator), IntToFloat(denominator))
-		res.Add(res, diff)
+		delta.Quo(big.NewFloat(numerator), IntToFloat(denominator))
+		res.Add(res, delta)
 		k++
 	}
 
