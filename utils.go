@@ -6,11 +6,17 @@ import (
 )
 
 // PRECISION Stop iterating when difference is smaller that this value
-const PRECISION float64 = 0.00000001
+// it gives 23-24 exact digits calculating Summations for pi for reasonable d
+const PRECISION string = "0.0000000000000000000000000001"
 
 // IntToFloat create a big.Float from a simple int
 func IntToFloat(x int) (*big.Float) {
-	return new(big.Float).SetInt64(int64(x))
+	return Int64ToFloat(int64(x))
+}
+
+// Int64ToFloat create a big.Float from a int64
+func Int64ToFloat(x int64) (*big.Float) {
+	return new(big.Float).SetPrec(128).SetInt64(x)
 }
 
 // WholePart extracts integer part of a big.Float
@@ -19,13 +25,25 @@ func WholePart(number *big.Float) (int64) {
 	return whole
 }
 
-// FractionalPart extracts fractional part of a big.Float
-func FractionalPart(number *big.Float) (*big.Float) {
-	whole := new(big.Float).SetInt64(WholePart(number))
-	frac := new(big.Float).SetPrec(128)
+// Ceil performs the ceil operation on big.Float, returns a int64
+func Ceil(number *big.Float) (int64) {
+	if (number.IsInt()) {
+		return WholePart(number)
+	}
+	return 1 + WholePart(number)
+}
 
-	frac.Sub(number, whole)
-	return frac
+// FractionalPart extracts fractional part of a big.Float
+// TODO: write down this definition of fractional part:
+// 1.247719 -> 0.247719
+// -0.85840 -> 0.141600
+func FractionalPart(number *big.Float) (*big.Float) {
+	if (number.Sign() >= 0) {
+		return new(big.Float).Sub(number, Int64ToFloat(WholePart(number)))
+	}
+
+	return new(big.Float).
+		Sub(IntToFloat(1), FractionalPart(new(big.Float).Abs(number)))
 }
 
 // ToStringBase returns a string representing fractional part of number,
@@ -52,7 +70,7 @@ func ToStringBase(number *big.Float, base int, digits int) (string, error) {
 }
 
 // ModPow calculates (b^n) modulo k, in a memory-efficient way.
-func ModPow(b int, n int, k int) (int, error) {
+func ModPow(b int, n int, k int) (int64, error) {
 	// TODO: usare meno moltiplicazioni
 
 	if ( k < 1 ) {
@@ -64,11 +82,11 @@ func ModPow(b int, n int, k int) (int, error) {
 	}
 
     b = b % k
-    result := 1
+    var result int64 = 1
 
     for n > 0 {
         if (n % 2 == 1) {
-			result = (result * b) % k
+			result = (result * int64(b)) % int64(k)
 		}
         n = n / 2
         b = (b * b) % k

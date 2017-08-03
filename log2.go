@@ -17,13 +17,13 @@ func Log2(digit int) (*big.Float) {
 			// TODO: handle err
 		}
 		quotient := new(big.Float).SetPrec(128).
-			Quo(IntToFloat(modpow), IntToFloat(k)) // quotient = modpow/k
+			Quo(Int64ToFloat(modpow), IntToFloat(k)) // quotient = modpow/k
 		res.Add(res, quotient)
 		k++
 	}
 	res = FractionalPart(res)
 
-	floatPrecision := big.NewFloat(PRECISION)
+	floatPrecision, _ := new(big.Float).SetString(PRECISION)
 	diff := IntToFloat(1)
 	for diff.Cmp(floatPrecision) >= 0 {
 		floatK := IntToFloat(k)
