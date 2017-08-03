@@ -5,9 +5,6 @@ import (
 	"math/big"
 )
 
-// PRECISION Stop iterating when difference is more little that this value
-const PRECISION float64 = 0.00000001
-
 // Log2 calculates log2 at binary digit specified, returns a big.Float
 func Log2(digit int) (*big.Float) {
 	digit--

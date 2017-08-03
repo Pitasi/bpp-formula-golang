@@ -5,6 +5,9 @@ import (
 	"errors"
 )
 
+// PRECISION Stop iterating when difference is smaller that this value
+const PRECISION float64 = 0.00000001
+
 // IntToFloat create a big.Float from a simple int
 func IntToFloat(x int) (*big.Float) {
 	return new(big.Float).SetInt64(int64(x))
