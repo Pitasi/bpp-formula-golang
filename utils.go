@@ -1,7 +1,6 @@
 package bppformula
 
 import (
-	"math"
 	"math/big"
 	"errors"
 )
