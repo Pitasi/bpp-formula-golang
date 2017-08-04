@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestS(t *testing.T)() {
+func TestS(t *testing.T) {
 	// Single tests for partial summations
 	// Expected values taken from:
 	// http://www.davidhbailey.com/dhbpapers/bbp-alg.pdf, page 4
@@ -23,7 +23,7 @@ func TestS(t *testing.T)() {
 	test(6, d, "0.3861386739520148480012151865")
 }
 
-func TestPi(t *testing.T)() {
+func TestPi(t *testing.T) {
 	test := func(d int, expected string) {
 		calc, err := ToStringBase(Pi(d), 16, 8)
 		if err != nil {
@@ -36,4 +36,19 @@ func TestPi(t *testing.T)() {
 
 	test(1, "243F6A88")
 	test(1000001, "6C65E52C")
+}
+
+func TestPiOverlap(t *testing.T) {
+	test := func(d int) {
+		first, _ := ToStringBase(Pi(d), 16, 8)
+		second, _ := ToStringBase(Pi(d+4), 16, 8)
+		if first[4:8] != second[0:4] {
+			t.Error("Digits don't overlap. Expected", first[4:8],
+				"and", second[0:4], "to be equal")
+		}
+	}
+
+	test(1)
+	test(10)
+	test(12323)
 }
