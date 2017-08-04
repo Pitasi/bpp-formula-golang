@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"errors"
 	"time"
+	b "./bppformula"
 )
-import b "./bppformula"
 
 func main() {
 	filename, args := os.Args[0], os.Args[1:]
