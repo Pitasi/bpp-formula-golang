@@ -14,27 +14,27 @@ func TestEnvFloat(t *testing.T)() {
 	res.Mul(res, v49)				// res = res * 49
 	isOne := res.Cmp(v1) == 0		// res == 1
 
-	if (res.Prec() != 128) {
+	if res.Prec() != 128 {
 		t.Error("Expected to use 128-bit float, instead using", res.Prec())
 	}
 
-	if (!isOne) {
+	if !isOne {
 		t.Error("Expected (1/49 * 49 == 1) to be true")
 	}
 }
 
 func TestModPow(t *testing.T)() {
 	_, err := ModPow(2, 100, 0)
-	if (err == nil) {
+	if err == nil {
 		t.Error("Test an invalid modulo 0, no error were raised")
 	}
 
 	test := func(base int, exp int, mod int, expected int64) {
 		res, err := ModPow(base, exp, mod)
-		if (err != nil) {
+		if err != nil {
 			t.Error("Unexpected error:", err)
 		}
-		if (res != expected) {
+		if res != expected {
 			t.Error("Expected 0, got:", res)
 		}
 	}
@@ -47,7 +47,7 @@ func TestModPow(t *testing.T)() {
 func TestWholePart(t *testing.T)() {
 	test := func(number float64, expected int64) {
 		x := big.NewFloat(number)
-		if (WholePart(x) != int64(expected)) {
+		if WholePart(x) != int64(expected) {
 			t.Error("Expected", expected, "got", WholePart(x))
 		}
 	}
@@ -62,7 +62,7 @@ func TestFractionalPart(t *testing.T)() {
 		numFloat := big.NewFloat(number)
 		expectedFloat := big.NewFloat(expected)
 		frac := FractionalPart(numFloat)
-		if (expectedFloat.Cmp(frac) != 0) {
+		if expectedFloat.Cmp(frac) != 0 {
 			t.Error("Expected", expectedFloat, "got", frac)
 		}
 	}
@@ -76,10 +76,10 @@ func TestToStringBase(t *testing.T)() {
 	test := func(number float64, base int, expected string) {
 		num := big.NewFloat(number)
 		str, err := ToStringBase(num, base, 4)
-		if (err != nil) {
+		if err != nil {
 			t.Error("Unexpected error:", err)
 		}
-		if (str != expected) {
+		if str != expected {
 			t.Error("Expected", expected, "got", str)
 		}
 	}

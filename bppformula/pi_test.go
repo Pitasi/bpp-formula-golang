@@ -11,7 +11,7 @@ func TestS(t *testing.T)() {
 
 	test := func(j int, d int, expected string) {
 		calc := S(1, j, d).Text('f', 30)[0:30] // truncate at 28 decimal digits
-		if (calc != expected) {
+		if calc != expected {
 			t.Error("Expected", expected, "got", calc)
 		}
 	}

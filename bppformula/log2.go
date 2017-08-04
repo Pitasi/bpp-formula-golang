@@ -14,7 +14,7 @@ func Log2(digit int) (*big.Float) {
 	// First summation (from 1 to d)
 	for k <= digit {
 		numerator, err := ModPow(2, digit-k, k)
-		if (err != nil) {
+		if err != nil {
 			// TODO: handle err
 		}
 		tmpRes := new(big.Float).SetPrec(128).

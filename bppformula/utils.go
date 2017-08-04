@@ -71,11 +71,11 @@ func ToStringBase(number *big.Float, base int, length int) (string, error) {
 // This is the Right-to-Left binary exponentiation
 // For references: Art of Programming vol. 2, par. 4.6.3
 func ModPow(b int, n int, k int) (int64, error) {
-	if ( k < 1 ) {
+	if k < 1 {
 		return -1, errors.New("Modulo must be greater than or equal to 1")
 	}
 
-    if ( k == 1 ) {
+    if k == 1 {
 		return 0, nil
 	}
 
@@ -83,7 +83,7 @@ func ModPow(b int, n int, k int) (int64, error) {
     var result int64 = 1
 
     for n > 0 {
-        if (n % 2 == 1) {
+        if n % 2 == 1 {
 			result = (result * int64(b)) % int64(k)
 		}
         n = n / 2

@@ -19,7 +19,7 @@ func Pi(digit int) (*big.Float) {
 // S calculates x*Summation(j,d)
 func S(x int, j int, d int) (*big.Float) {
 	sum := Summation(j, d)
-	if (x == 1) {
+	if x == 1 {
 		return sum
 	}
 	return sum.Mul(sum, IntToFloat(x))
@@ -34,7 +34,7 @@ func Summation(j int, d int) (*big.Float) {
 	for k <= d {
 		denominator := (8*k)+j
 		numerator, err := ModPow(16, d-k, denominator)
-		if (err != nil) {
+		if err != nil {
 			// TODO: handle error
 		}
 		tmpRes := new(big.Float).SetPrec(128).

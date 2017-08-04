@@ -18,23 +18,23 @@ func main() {
 	}
 
 	d, err := parseInt(filename, args[1])
-	if (err != nil) { return }
+	if err != nil { return }
 
 
 	var res string
 	fmt.Printf("Computing...")
 	timeStart := time.Now()
-	if (args[0] == "log2") {
+	if args[0] == "log2" {
 		res, err = b.ToStringBase(b.Log2(d), 2, 8)
 		fmt.Printf("\rBinary")
-	} else if (args[0] == "pi") {
+	} else if args[0] == "pi" {
 		res, err = b.ToStringBase(b.Pi(d), 16, 8)
 		fmt.Printf("\rHexadecimal")
 	}
 	elapsed := time.Since(timeStart)
 
 	fmt.Printf(" digits of %s starting at position %s: ", args[0], args[1])
-	if (err != nil) {
+	if err != nil {
 		fmt.Println("Unexpected error:", err)
 	}
 	fmt.Println(res)
@@ -48,7 +48,7 @@ func help(filename string) {
 
 func parseInt(filename string, s string) (int, error) {
 	d, err := strconv.Atoi(s)
-	if (err != nil || d <= 0) {
+	if err != nil || d <= 0 {
 		fmt.Println("ERROR Invalid number n provided. A positive integer is required.")
 		fmt.Println("Try running:", filename, "pi 10000")
 		return -1, errors.New("Invalid number")
