@@ -1,6 +1,7 @@
 package bppformula
 
 import (
+	"math"
 	"math/big"
 	"errors"
 )
@@ -73,10 +74,10 @@ func ToStringBase(number *big.Float, base int, length int) (string, error) {
 	return string(res), nil
 }
 
-// ModPow calculates (b^n) modulo k, in a memory-efficient way.
+// ModPow calculates (b^n) modulo k, in a memory efficient way
+// This is the Right-to-Left binary exponentiation
+// For references: Art of Programming vol. 2, par. 4.6.3
 func ModPow(b int, n int, k int) (int64, error) {
-	// TODO: usare meno moltiplicazioni
-
 	if ( k < 1 ) {
 		return -1, errors.New("Modulo must be greater than or equal to 1")
 	}
