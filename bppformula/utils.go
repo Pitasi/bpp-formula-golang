@@ -25,25 +25,19 @@ func WholePart(number *big.Float) (int64) {
 	return whole
 }
 
-// Ceil performs the ceil operation on big.Float, returns a int64
-func Ceil(number *big.Float) (int64) {
-	if (number.IsInt()) {
+// Floor performs the floor operation on big.Float, returns a int64
+func Floor(number *big.Float) (int64) {
+	if number.Sign() >= 0 {
 		return WholePart(number)
 	}
-	return 1 + WholePart(number)
+
+	return WholePart(number) - 1
 }
 
 // FractionalPart extracts fractional part of a big.Float
-// TODO: write down this definition of fractional part:
-// 1.247719 -> 0.247719
-// -0.85840 -> 0.141600
+// defined as x-floor(x), for negative numbers too
 func FractionalPart(number *big.Float) (*big.Float) {
-	if (number.Sign() >= 0) {
-		return new(big.Float).Sub(number, Int64ToFloat(WholePart(number)))
-	}
-
-	return new(big.Float).
-		Sub(IntToFloat(1), FractionalPart(new(big.Float).Abs(number)))
+	return new(big.Float).Sub(number, Int64ToFloat(Floor(number)))
 }
 
 // ToStringBase returns a string representing fractional part of number,
