@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestEnvFloat(t *testing.T)() {
+func TestEnvFloat(t *testing.T) {
 	v49 := new(big.Float).SetInt64(49)
 	v1	:= new(big.Float).SetInt64(1)
 	res	:= new(big.Float).SetPrec(128)
@@ -23,7 +23,7 @@ func TestEnvFloat(t *testing.T)() {
 	}
 }
 
-func TestModPow(t *testing.T)() {
+func TestModPow(t *testing.T) {
 	_, err := ModPow(2, 100, 0)
 	if err == nil {
 		t.Error("Test an invalid modulo 0, no error were raised")
@@ -44,7 +44,7 @@ func TestModPow(t *testing.T)() {
 	test(367, 447, 739, 687)
 }
 
-func TestWholePart(t *testing.T)() {
+func TestWholePart(t *testing.T) {
 	test := func(number float64, expected int64) {
 		x := big.NewFloat(number)
 		if WholePart(x) != int64(expected) {
@@ -57,7 +57,7 @@ func TestWholePart(t *testing.T)() {
 	test(423512.23441235, 423512)
 }
 
-func TestFractionalPart(t *testing.T)() {
+func TestFractionalPart(t *testing.T) {
 	test := func(number float64, expected float64) {
 		numFloat := big.NewFloat(number)
 		expectedFloat := big.NewFloat(expected)
@@ -72,7 +72,7 @@ func TestFractionalPart(t *testing.T)() {
 	test(-16.25, 0.75)
 }
 
-func TestToStringBase(t *testing.T)() {
+func TestToStringBase(t *testing.T) {
 	test := func(number float64, base int, expected string) {
 		num := big.NewFloat(number)
 		str, err := ToStringBase(num, base, 4)
