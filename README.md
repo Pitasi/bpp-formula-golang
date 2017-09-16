@@ -20,8 +20,8 @@ you can esily do this by  running:
 ```
 $ git clone https://github.com/Pitasi/progetto-esp
 $ cd progetto-esp/
-$ go build -o esp
-$ ./esp pi 10000
+$ go build -o bin/esp
+$ bin/esp pi 10000
 ```
 
 ## Testing
