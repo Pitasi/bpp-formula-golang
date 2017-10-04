@@ -51,5 +51,5 @@ func main() {
 
 func help(filename string) {
 	fmt.Println("This program calculates n-th digit of binary log2 or hexadecimal pi.")
-	fmt.Println("Usage:", filename, "[log2/pi] n")
+	fmt.Println("Usage:", filename, "[log2/pi] <n>")
 }
