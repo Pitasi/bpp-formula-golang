@@ -8,11 +8,11 @@ of _log(2)_
 * **[bbpformula/](https://github.com/Pitasi/progetto-esp/tree/master/bppformula)**,
 the package you can easily reuse everywhere you need.<br>
 It mainly exports three functions:
-	1. **Pi(d)**, compute π starting at digit d.
-	2. **Log2(d)**, compute log2 starting at digit d.
-	3. **ToStringBase(num, base, length)**,
-	generate string from a number in the given base.<br/>
-	*(you should use __16__ for π and __2__ for log(2))*.
+  1. **Pi(d)**, compute π starting at digit d.
+  2. **Log2(d)**, compute log2 starting at digit d.
+  3. **ToStringBase(num, base, length)**,
+  generate string from a number in the given base.<br/>
+  *(you should use __16__ for π and __2__ for log(2))*.
 
 ## Usage
 To use the CLI interface, you need to build and run the Go code,
