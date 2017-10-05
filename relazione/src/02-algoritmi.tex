@@ -1,0 +1,60 @@
+\section{Algoritmi}
+
+\subsection{Il calcolo di log(2)}
+Borwein e Plouffe osservarono come partendo dalla formula per il calcolo di $\log(2)$ potessero calcolarne le cifre binarie a partire da una posizione arbitraria.
+
+\noindent Riprendendo quindi la formula scritta precedentemente:
+$$\ln(2) = \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k}$$
+
+\noindent Vogliamo calcolare le cifre \textit{binarie} che partono alla posizione $d+1$. Si può notare come questo sia equivalente a calcolare $\{2^d \cdot \log(2)\}$, dove \{\} indica la parte frazionaria\footnote{La definizione di parte frazionaria è: $\{x\} = x - \lfloor x \rfloor$.}.
+
+Quindi possiamo scrivere:
+\begin{equation*}
+\begin{split}
+\left\{2^d \cdot \log(2)\right\}
+& = \left\{ \sum\limits_{k=1}^{\infty} \frac{2^{d-k}}{k} \right\} \\
+& = \left\{ \left\{ \sum\limits_{k=1}^{d} \frac{2^{d-k}}{k} \right\} + \sum\limits_{k=d+1}^{\infty} \frac{2^{d-k}}{k} \right\} \\
+& = \left\{ \left\{ \sum\limits_{k=1}^{d} \frac{2^{d-k}\bmod k}{k} \right\} + \sum\limits_{k=d+1}^{\infty} \frac{2^{d-k}}{k} \right\}
+\end{split}
+\end{equation*}
+
+Nel primo passaggio la sommatoria è stata divisa in due sommatorie per separare la prima che possiede una parte intera, dalla seconda che invece è sicuramente minore di 1.\footnote{Questo è dato dal fatto che $2^{d-k} < 1$ per $k > d$.}
+
+Nel secondo passaggio è stato aggiunto \textit{mod k}, giustificato dal fatto che ci interessa solo la parte frazionaria del quoziente della divisione per k.
+
+Adesso si può notare come i termini della seconda sommatoria diventino piccoli molto in fretta, quindi a seconda della precisione di macchina disponibile, bastano poche iterazioni per un'approssimazione sufficiente a trovare la cifra in posizione d+1, ma anche qualcuna delle successive.
+\bigbreak \noindent
+Per l'implementazione si rimanda alla \hyperref[sec:impl]{\textit{Sezione 3}}.
+
+\subsection{Il calcolo di Pi Greco}
+Dopo essere riusciti con log(2), Borwein e Plouffe sono andati alla ricerca di formule analoghe che funzionassero con altre costanti. Ed è così che hanno trovato la formula per il calcolo di $\pi$:
+
+\begin{equation*}
+\begin{split}
+\pi 
+& = \sum\limits_{k=0}^{\infty} \left[ \frac{1}{16^k}\left( \frac{4}{8k+1} - \frac{2}{8k+4} - \frac{5}{8k+5} - \frac{1}{8k+6} \right) \right] \\
+& =
+4 \cdot S_1 - 2 \cdot S_4 - S_5 - S_6, \\
+S_j & = \sum\limits_{k=0}^{\infty} \frac{1}{16^k \cdot (8k+j)}
+\end{split}
+\end{equation*}
+
+Dove la sommatoria viene divisa in quattro sommatorie più piccole permettendo una notazione più compatta.
+\bigbreak
+Da qui si può fare un ragionamento molto simile al precedente: per calcolare la cifre \textit{esadecimali} che partono alla posizione $d+1$, occorre calcolare $\{16^d \cdot \pi\}$, ricordando che \{\} indica la parte frazionaria. Ovvero:
+\begin{equation*}
+\{16^d\pi\} =
+\{4 \cdot \{16^dS_1\} - \{2 \cdot \{16^dS_4\}\} - \{16^dS_5\} - \{16^dS_6\}\}
+\end{equation*}
+
+Per calcolare in modo efficiente gli addendi di questa somma, applichiamo le stesse trasformazioni fatte nel paragrafo precedente:
+\begin{equation*}
+\begin{split}
+\{16^dS_j\} & = \left\{\left\{\sum\limits_{k=0}^d \frac{16^{d-k}}{8k+j}\right\} + \sum\limits_{k=d+1}^\infty \frac{16^{d-k}}{8k+j}\right\} \\
+& = \left\{\left\{\sum\limits_{k=0}^d \frac{16^{d-k}\bmod{8k+j}}{8k+j}\right\} + \sum\limits_{k=d+1}^\infty \frac{16^{d-k}}{8k+j}\right\}
+\end{split}
+\end{equation*}
+
+Si nota subito la somiglianza con il risultato trovato per log(2), con la sola differenza che adesso andranno calcolati quattro diversi risultati per poi combinarli opportunamente insieme.
+
+Il calcolo della prima sommatoria potrebbe sembrare costoso visto l'esponente molto grande al numeratore, ma è reso possibile dall'operazione di \textit{modulo}. Infatti viene utilizzato un algoritmo ottimizzato per occupare poco spazio, spiegato nella sezione \hyperref[sec:impl_pot]{\textit{Sezione 3.1}}.
