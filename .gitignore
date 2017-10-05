@@ -1,3 +1,10 @@
 bin/
 *.exe
 *.out
+
+relazione/_minted-main/
+relazione/*.aux
+relazione/*.dvi
+relazione/*.log
+relazione/*.pdf
+relazione/*.gz
