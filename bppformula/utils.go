@@ -67,7 +67,7 @@ func ToStringBase(number *big.Float, base int, length int) (string, error) {
   return string(res), nil
 }
 
-// ModPow calculates (b^n) modulo k, in a memory efficient way
+// ModPow computes (b^n) modulo k, in a memory efficient way
 // This is the Right-to-Left binary exponentiation
 // For references: Art of Programming vol. 2, par. 4.6.3
 func ModPow(b int, n int, k int) (int64, error) {

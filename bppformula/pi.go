@@ -5,7 +5,7 @@ import (
   "math/big"
 )
 
-// Pi calculates pi at hexadecimal digit specified, returns a big.Float
+// Pi computes pi at hexadecimal digit specified, returns a big.Float
 func Pi(digit int) (*big.Float) {
   digit--
   res := S(4, 1, digit)
@@ -16,7 +16,7 @@ func Pi(digit int) (*big.Float) {
   return FractionalPart(res)
 }
 
-// S calculates x*Summation(j,d)
+// S computes x*Summation(j,d)
 func S(x int, j int, d int) (*big.Float) {
   sum := Summation(j, d)
   if x == 1 {
@@ -25,7 +25,7 @@ func S(x int, j int, d int) (*big.Float) {
   return sum.Mul(sum, IntToFloat(x))
 }
 
-// Summation calculates {16^d*Sj}, see PDF attached for references
+// Summation computes {16^d*Sj}, see PDF attached for references
 func Summation(j int, d int) (*big.Float) {
   k := 0
   res := IntToFloat(0)

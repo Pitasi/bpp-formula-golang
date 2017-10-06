@@ -5,7 +5,7 @@ import (
   "math/big"
 )
 
-// Log2 calculates log2 at binary digit specified, returns a big.Float
+// Log2 computes log2 at binary digit specified, returns a big.Float
 func Log2(digit int) (*big.Float) {
   digit--
   k := 1
