@@ -1,23 +1,33 @@
 \newpage
 \section{Codice sorgente}
 
+\newcommand{\addsrcfile}[1]{
+	\inputminted [
+		linenos=true,
+		numberblanklines=true,
+		showspaces=false,
+		breaklines=true
+	]{go}
+	{#1}
+}
+
 \subsection{./main.go}
-\inputminted{go}{../main.go}
+\addsrcfile{../main.go}
 
 \subsection{bppformula/log2.go}
-\inputminted{go}{../bppformula/log2.go}
+\addsrcfile{../bppformula/log2.go}
 
 \subsection{bppformula/log2\_test.go}
-\inputminted{go}{../bppformula/log2_test.go}
+\addsrcfile{../bppformula/log2_test.go}
 
 \subsection{bppformula/pi.go}
-\inputminted{go}{../bppformula/pi.go}
+\addsrcfile{../bppformula/pi.go}
 
 \subsection{bppformula/pi\_test.go}
-\inputminted{go}{../bppformula/pi_test.go}
+\addsrcfile{../bppformula/pi_test.go}
 
 \subsection{bppformula/utils.go}
-\inputminted{go}{../bppformula/utils.go}
+\addsrcfile{../bppformula/utils.go}
 
 \subsection{bppformula/utils\_test.go}
-\inputminted{go}{../bppformula/utils_test.go}
+\addsrcfile{../bppformula/utils_test.go}

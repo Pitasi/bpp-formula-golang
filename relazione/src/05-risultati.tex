@@ -1,27 +1,27 @@
 \section{Risultati}
-Vengono riportati alcuni risultati di esempio ottenuti eseguendo il programma:
+Vengono riportati alcuni risultati di esempio trovati eseguendo il programma:
 \newline
 
-Binary digits of log2 starting at position 1: 10110001
+Binary digits of log2 starting at position 1: \textbf{10110001}
 
-Binary digits of log2 starting at position 100: 00011111
+Binary digits of log2 starting at position 100: \textbf{00011111}
 
-Binary digits of log2 starting at position 10000: 00101101
+Binary digits of log2 starting at position 10000: \textbf{00101101}
 
-Binary digits of log2 starting at position 1000000: 11010100
+Binary digits of log2 starting at position 1000000: \textbf{11010100}
 
-Binary digits of log2 starting at position 100000000: 01100111
+Binary digits of log2 starting at position 100000000: \textbf{01100111}
 \newline
 
-Hexadecimal digits of pi starting at position 1: 243F6A88
+Hexadecimal digits of pi starting at position 1: \textbf{243F6A88}
 
-Hexadecimal digits of pi starting at position 100: C29B7C97
+Hexadecimal digits of pi starting at position 100: \textbf{C29B7C97}
 
-Hexadecimal digits of pi starting at position 10000: 68AC8FCF
+Hexadecimal digits of pi starting at position 10000: \textbf{68AC8FCF}
 
-Hexadecimal digits of pi starting at position 1000000: 26C65E52
+Hexadecimal digits of pi starting at position 1000000: \textbf{26C65E52}
 
-Hexadecimal digits of pi starting at position 10000000: 17AF5863
+Hexadecimal digits of pi starting at position 10000000: \textbf{17AF5863}
 
 \subsection{Tempo di computazione}
 Durante l'esecuzione del programma sul mio computer, ho ottenuto i seguenti tempi di calcolo in funzione della posizione della cifra richiesta $n$:
@@ -39,27 +39,25 @@ Durante l'esecuzione del programma sul mio computer, ho ottenuto i seguenti temp
     grid style=dashed,
 ]
  
-\addplot table
+\addplot[blue] table
   [
-      color=blue,
       col sep=comma,
       trim cells=true,
-    y=time,
-    mark=none
+      y=time,
+      mark=none
     ]
     {../data/elapsed_times.pi.csv};
-    \legend{$\pi$}
+    \addlegendentry{$\pi$}
  
-\addplot table
+\addplot[red] table
   [
-    color=green,
     col sep=comma,
     trim cells=true,
     y=time,
     mark=none
   ]
   {../data/elapsed_times.log2.csv};
-  \legend{$log(2)$}
+  \addlegendentry{$\log(2)$}
 
 \end{axis}
 \end{tikzpicture}
@@ -69,13 +67,14 @@ Durante l'esecuzione del programma sul mio computer, ho ottenuto i seguenti temp
 Il peso viene dato dalle sommatorie presenti sia nel calcolo di $log(2)$ che per $\pi$, in entrambi i casi hanno $O(n)$ termini.
 \newline
 
-Come intuibile, si vede anche come il calcolo per $log(2)$ sia meno costoso rispetto a quello per $\pi$. 
+Come intuibile, si vede anche come il calcolo per $log(2)$ sia meno costoso rispetto a quello per $\pi$.
 
 \subsection{Possibili (futuri) utilizzi}
-Partendo dal fatto che le cifre in $\pi$ \textbf{sembrano}\footnote{Non è stato dimostrato per il momento.} comparire equiprobabilmente, si potrebbe dedurre che prima o poi sia possibile incontrare qualunque sequenza di cifre.
+Ammettendo che le cifre in $\pi$ compaiano equiprobabilmente\footnote{Non è stato dimostrato per il momento.}, si potrebbe dedurre che prima o poi sia possibile incontrare qualunque sequenza di cifre.
 
 Per questo motivo si può pensare di codificare un file, che non è altro che una sequenza di cifre, \textit{all'interno} di $\pi$.
 Sarebbe sufficiente memorizzare solo la posizione della cifra iniziale e la sua lunghezza. Recuperarlo in seguito usando il calcolo dell'n-sima cifra sarebbe \textit{relativamente facile}.
+\newline
 
 \noindent Sebbene per il momento il calcolo richiederebbe troppo tempo, rendendo questa tecnica inutilizzabile, il grafico che segue mostra i dati ottenuti sulla frequenza di comparsa delle singole cifre all'interno del primo milione di cifre:
 \newline \newline
@@ -99,4 +98,4 @@ Sarebbe sufficiente memorizzare solo la posizione della cifra iniziale e la sua 
 \end{axis}
 \end{tikzpicture}
 
-Risulta evidente che ogni cifra appare più o meno la stessa quantità di volte delle altre. Questo potrebbe aprire nuove strade sull'utilizzo di costanti come il Pi greco per la codifica e compressione di file.
+Risulta evidente che ogni cifra appare più o meno la stessa quantità di volte delle altre. Questo potrebbe in futuro aprire nuove strade sull'utilizzo di costanti come $\pi$ per la codifica e compressione di file, o altro ancora.

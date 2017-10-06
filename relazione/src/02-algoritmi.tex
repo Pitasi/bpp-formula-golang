@@ -3,12 +3,12 @@
 \subsection{Il calcolo di log(2)}
 Borwein e Plouffe osservarono come partendo dalla formula per il calcolo di $\log(2)$ potessero calcolarne le cifre binarie a partire da una posizione arbitraria.
 
-\noindent Riprendendo quindi la formula scritta precedentemente:
+\noindent Il loro ragionamento parte dalla formula scritta nel capitolo precedente:
 $$\ln(2) = \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k}$$
 
-\noindent Vogliamo calcolare le cifre \textit{binarie} che partono alla posizione $d+1$. Si può notare come questo sia equivalente a calcolare $\{2^d \cdot \log(2)\}$, dove \{\} indica la parte frazionaria\footnote{La definizione di parte frazionaria è: $\{x\} = x - \lfloor x \rfloor$.}.
+\noindent L'obiettivo dunque è calcolare le cifre \textit{binarie} che partono alla posizione $d+1$. Si può notare come questo sia equivalente a calcolare $\{2^d \cdot \log(2)\}$, dove \{\} indica la parte frazionaria\footnote{La definizione di parte frazionaria è: $\{x\} = x - \lfloor x \rfloor$.}.
 
-Quindi possiamo scrivere:
+Si effettuano alcune trasformazioni:
 \begin{equation*}
 \begin{split}
 \left\{2^d \cdot \log(2)\right\}
@@ -18,11 +18,11 @@ Quindi possiamo scrivere:
 \end{split}
 \end{equation*}
 
-Nel primo passaggio la sommatoria è stata divisa in due sommatorie per separare la prima che possiede una parte intera, dalla seconda che invece è sicuramente minore di 1.\footnote{Questo è dato dal fatto che $2^{d-k} < 1$ per $k > d$.}
+Nel primo passaggio la sommatoria è stata divisa in due sommatorie per separare la prima che possiede una parte intera, dalla seconda che invece è sicuramente minore di 1.\footnote{Infatti $2^{d-k} < 1$ per $k > d$.}
 
-Nel secondo passaggio è stato aggiunto \textit{mod k}, giustificato dal fatto che ci interessa solo la parte frazionaria del quoziente della divisione per k.
+Nel secondo passaggio è stato aggiunto \textit{mod k}, giustificato dal fatto che interessa solo la parte frazionaria del quoziente della divisione per k.
 
-Adesso si può notare come i termini della seconda sommatoria diventino piccoli molto in fretta, quindi a seconda della precisione di macchina disponibile, bastano poche iterazioni per un'approssimazione sufficiente a trovare la cifra in posizione d+1, ma anche qualcuna delle successive.
+Adesso si può notare come i termini della seconda sommatoria diventino piccoli molto velocemente, quindi in base alla precisione di macchina disponibile bastano poche iterazioni per un'approssimazione sufficiente a trovare la cifra in posizione d+1, ma anche qualcuna delle successive.
 \bigbreak \noindent
 Per l'implementazione si rimanda alla \hyperref[sec:impl]{\textit{Sezione 3}}.
 
@@ -41,13 +41,13 @@ S_j & = \sum\limits_{k=0}^{\infty} \frac{1}{16^k \cdot (8k+j)}
 
 Dove la sommatoria viene divisa in quattro sommatorie più piccole permettendo una notazione più compatta.
 \bigbreak
-Da qui si può fare un ragionamento molto simile al precedente: per calcolare la cifre \textit{esadecimali} che partono alla posizione $d+1$, occorre calcolare $\{16^d \cdot \pi\}$, ricordando che \{\} indica la parte frazionaria. Ovvero:
+Da qui si può fare un ragionamento molto simile al precedente: per trovare le cifre \textit{esadecimali} che partono alla posizione $d+1$, occorre calcolare $\{16^d \cdot \pi\}$, ricordando che \{\} indica la parte frazionaria. Ovvero:
 \begin{equation*}
 \{16^d\pi\} =
 \{4 \cdot \{16^dS_1\} - \{2 \cdot \{16^dS_4\}\} - \{16^dS_5\} - \{16^dS_6\}\}
 \end{equation*}
 
-Per calcolare in modo efficiente gli addendi di questa somma, applichiamo le stesse trasformazioni fatte nel paragrafo precedente:
+Applichiamo le stesse trasformazioni fatte nel paragrafo precedente alle quattro sommatorie:
 \begin{equation*}
 \begin{split}
 \{16^dS_j\} & = \left\{\left\{\sum\limits_{k=0}^d \frac{16^{d-k}}{8k+j}\right\} + \sum\limits_{k=d+1}^\infty \frac{16^{d-k}}{8k+j}\right\} \\
@@ -55,6 +55,6 @@ Per calcolare in modo efficiente gli addendi di questa somma, applichiamo le ste
 \end{split}
 \end{equation*}
 
-Si nota subito la somiglianza con il risultato trovato per log(2), con la sola differenza che adesso andranno calcolati quattro diversi risultati per poi combinarli opportunamente insieme.
+Si nota infatti la somiglianza con il risultato trovato per log(2). La principale differenza sta nel dover calcolare quattro diversi risultati, per poi combinarli opportunamente insieme.
 
-Il calcolo della prima sommatoria potrebbe sembrare costoso visto l'esponente molto grande al numeratore, ma è reso possibile dall'operazione di \textit{modulo}. Infatti viene utilizzato un algoritmo ottimizzato per occupare poco spazio, spiegato nella sezione \hyperref[sec:impl_pot]{\textit{Sezione 3.1}}.
+Il calcolo della prima sommatoria potrebbe sembrare costoso visto l'esponente molto grande al numeratore, ma è reso possibile dall'operazione di \textit{modulo}. Infatti viene utilizzato un algoritmo ottimizzato, spiegato nella sezione \hyperref[sec:impl_pot]{\textit{Sezione 3.1}}.

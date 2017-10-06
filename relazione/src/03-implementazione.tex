@@ -2,9 +2,9 @@
 \label{sec:impl}
 \subsection{Elevamento a potenza in modulo}
 \label{sec:impl_pot}
-Operazioni come $b^e\bmod{k}$, vengono calcolate utilizzato un algoritmo noto con il nome di \textit{Right-to-Left binary exponentiation}\cite[p. 463]{Knuth}.
+Operazioni come $b^e\bmod{k}$ vengono calcolate utilizzando un algoritmo noto con il nome di \textit{Right-to-Left binary exponentiation}\cite[par. 4.6.3]{Knuth}.
 
-Non è possibile calcolare prima $b^e$ come verrebbe spontaneo, perché potrebbe essere un numero troppo grosso da rappresentare. Per superare questo problema basta notare come:
+Non è possibile calcolare prima $b^e$ come verrebbe spontaneo, perché nel nostro caso sarebbe un numero troppo grosso da rappresentare. Per superare questo problema basta notare come:
 $$c = (a \cdot b)\bmod{m}$$
 sia uguale a
 $$c = (a\bmod{m} \cdot b\bmod{m})\bmod{m}$$
@@ -18,7 +18,7 @@ Dove $a_i$ può essere 0 o 1, $a_{n-i} = 1$, e \textit{n} è il numero minimo di
 Quindi:
 $$b^e = \prod\limits_{i=0}^{n-1} (b^{2^i})^{a_i}$$
 
-\noindent Il programma finale si può scrivere in pseudocodice in questo modo:
+\noindent Per maggiore chiarezza, lo pseudocodice risultante è:
 
 \begin{mdframed}[backgroundcolor=bg]
 \begin{minted}[mathescape]{matlab}
@@ -37,6 +37,7 @@ function ModPow(b, e, k)
 
 \subsection{Altre scelte implementative}
 
-La quantità di cifre calcolate a partire della posizione specificata, dipende dalla precisione della macchina utilizzata. In particolare Bailey stesso ha scritto che utilizzando aritmetica a 64 bit si hanno almeno nove cifre corrette, mentre con aritmetica a 128 bit se ne hanno almeno ventiquattro.\cite[p.\ 4-5]{Bailey}
+La quantità di cifre calcolate a partire della posizione specificata, dipende dalla precisione della macchina utilizzata. In particolare Bailey stesso durante dei test ha ottenuto almeno nove cifre corrette usando aritmetica a 64 bit, mentre con usando 128 bit se ne hanno almeno ventiquattro.\cite[p.\ 4-5]{Bailey}
+\newline
 
-Nel programma presentato vengono utilizzati numeri in virgola mobile da 128 bit, implementati mediante una libreria.
+Nel programma presentato vengono utilizzati numeri in virgola mobile da 128 bit, implementati mediante una libreria standard.
