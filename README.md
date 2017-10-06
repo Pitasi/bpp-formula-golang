@@ -1,11 +1,11 @@
-# BPP-Formula, in Go!
+# bbp-Formula, in Go!
 Little project for a CS exam at University of Pisa.
 
 This project is composed by:
 * **[main.go](main.go) file**, which provides a simple
 CLI interface for computing _n-th_ hexadecimal digit of π or binary digit
 of _log(2)_
-* **[bbpformula/](https://github.com/Pitasi/progetto-esp/tree/master/bppformula)**,
+* **[bbpformula/](https://github.com/Pitasi/progetto-esp/tree/master/bbpformula)**,
 the package you can easily reuse everywhere you need.<br>
 It mainly exports three functions:
   1. **Pi(d)**, compute π starting at digit d.
@@ -27,6 +27,6 @@ $ bin/esp pi 10000
 ## Testing
 You can use the tool provided by Go itself to run the test suite:
 ```bash
-cd bppformula/
+cd bbpformula/
 go test -v
 ```

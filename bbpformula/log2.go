@@ -1,4 +1,4 @@
-package bppformula
+package bbpformula
 
 import (
   "math"
