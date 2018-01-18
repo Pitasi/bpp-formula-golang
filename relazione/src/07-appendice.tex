@@ -1,33 +1,44 @@
 \newpage
+\newgeometry{left=2.5cm,right=2.5cm,top=2cm,bottom=2cm}
+
 \section{Codice sorgente}
 
+\makeatletter
+\DeclareRobustCommand{\filename}[1]{
+    \begingroup
+        \def\textendash{-}
+        \filename@parse{#1}
+        \edef\filename@base{\detokenize\expandafter{\filename@base}}
+        \subsection{\filename@base.\filename@ext}
+    \endgroup
+}
+\makeatother
+
 \newcommand{\addsrcfile}[1]{
-	\inputminted [
-		linenos=true,
-		numberblanklines=true,
-		showspaces=false,
-		breaklines=true
-	]{go}
-	{#1}
+    \filename{#1}
+    \inputminted [
+        linenos=true,
+        numberblanklines=true,
+        showspaces=false,
+        breaklines=true,
+        fontsize=\footnotesize
+    ]{go}
+    {#1}
+    \bigskip \bigskip
 }
 
-\subsection{./main.go}
 \addsrcfile{../main.go}
 
-\subsection{bbpformula/log2.go}
 \addsrcfile{../bbpformula/log2.go}
 
-\subsection{bbpformula/log2\_test.go}
 \addsrcfile{../bbpformula/log2_test.go}
 
-\subsection{bbpformula/pi.go}
 \addsrcfile{../bbpformula/pi.go}
 
-\subsection{bbpformula/pi\_test.go}
 \addsrcfile{../bbpformula/pi_test.go}
 
-\subsection{bbpformula/utils.go}
 \addsrcfile{../bbpformula/utils.go}
 
-\subsection{bbpformula/utils\_test.go}
 \addsrcfile{../bbpformula/utils_test.go}
+
+\restoregeometry

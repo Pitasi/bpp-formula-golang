@@ -1,5 +1,5 @@
 \section{Introduzione al problema}
-In questo progetto, si cerca di dare una buona implementazione della formula di Bailey–Borwein–Plouffe, che modificata in modo appropriato, consente di calcolare l'n-esima cifra esadecimale di \p senza conoscerne le precedenti.
+In questo progetto, si cerca di dare una buona implementazione della formula di Bailey-–Borwein-–Plouffe, che modificata in modo appropriato, consente di calcolare l'n-esima cifra esadecimale di $\pi$ senza conoscerne le precedenti.
 
 \noindent La formula originale, denominata \textit{BBP formula}, è la seguente:
 \begin{equation*}
@@ -9,6 +9,6 @@ Pur rappresentando un buon metodo per il calcolo di $\pi$, non è il più veloce
 Un vantaggio di questo approccio, consiste nella possibilità di avere macchine che calcolano cifre diverse parallelamente, poiché il risultato di un calcolo non influenza gli altri.
 \bigbreak \noindent
 La formula scoperta da Plouffe è stata ispirata da una formula già nota, anch'essa in forma di sommatoria:
-$$ \ln(2)= \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k} $$
+$$ \log(2)= \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k} $$
 \\
 All'interno del programma viene implementata pure quest'ultima, utilizzabile per calcolare l'n-esima cifra binaria di $\log(2)$, ancora una volta senza conoscerne le precedenti.

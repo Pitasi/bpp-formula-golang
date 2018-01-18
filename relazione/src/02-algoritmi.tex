@@ -1,10 +1,10 @@
 \section{Algoritmi}
 
 \subsection{Il calcolo di log(2)}
-Borwein e Plouffe osservarono come partendo dalla formula per il calcolo di $\log(2)$ potessero calcolarne le cifre binarie a partire da una posizione arbitraria.
+Borwein e Plouffe osservarono come la formula scritta in precedenza possa essere usata per calcolare le cifre binarie di $\log(2)$ a partire da una posizione arbitraria.
 
-\noindent Il loro ragionamento parte dalla formula scritta nel capitolo precedente:
-$$\ln(2) = \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k}$$
+\noindent Il ragionamento percorso è stato il seguente:
+$$\log(2) = \sum\limits_{k=1}^{\infty} \frac{1}{2^k \cdot k}$$
 
 \noindent L'obiettivo dunque è calcolare le cifre \textit{binarie} che partono alla posizione $d+1$. Si può notare come questo sia equivalente a calcolare $\{2^d \cdot \log(2)\}$, dove \{\} indica la parte frazionaria\footnote{La definizione di parte frazionaria è: $\{x\} = x - \lfloor x \rfloor$.}.
 
@@ -26,7 +26,7 @@ Adesso si può notare come i termini della seconda sommatoria diventino piccoli 
 \bigbreak \noindent
 Per l'implementazione si rimanda alla \hyperref[sec:impl]{\textit{Sezione 3}}.
 
-\subsection{Il calcolo di Pi Greco}
+\subsection{Il calcolo di $\pi$}
 Dopo essere riusciti con log(2), Borwein e Plouffe sono andati alla ricerca di formule analoghe che funzionassero con altre costanti. Ed è così che hanno trovato la formula per il calcolo di $\pi$:
 
 \begin{equation*}
@@ -57,4 +57,4 @@ Applichiamo le stesse trasformazioni fatte nel paragrafo precedente alle quattro
 
 Si nota infatti la somiglianza con il risultato trovato per log(2). La principale differenza sta nel dover calcolare quattro diversi risultati, per poi combinarli opportunamente insieme.
 
-Il calcolo della prima sommatoria potrebbe sembrare costoso visto l'esponente molto grande al numeratore, ma è reso possibile dall'operazione di \textit{modulo}. Infatti viene utilizzato un algoritmo ottimizzato, spiegato nella sezione \hyperref[sec:impl_pot]{\textit{Sezione 3.1}}.
+Il calcolo della prima sommatoria potrebbe sembrare costoso visto l'esponente molto grande al numeratore, ma è reso possibile dall'operazione di \textit{modulo}. Infatti viene utilizzato un algoritmo ottimizzato, spiegato nella \hyperref[sec:impl_pot]{\textit{Sezione 3.1}}.

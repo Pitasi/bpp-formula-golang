@@ -3,7 +3,7 @@ Il programma è stato sviluppato seguendo il modello del \textit{Test Driven Dev
 
 Ogni file sorgente è accompagnato da un secondo file contenente i relativi test.
 
-\noindent La maggior parte della suite di test utilizza la tecnica dell'oracolo, in pratica viene confrontato l'output della funzione implementata con risultati noti a priori.
+\noindent La maggior parte della suite di test utilizza la tecnica dell'oracolo: viene confrontato l'output della funzione implementata con risultati noti a priori.
 
 Nel calcolo dell'elevamento a potenza in modulo vengono usati:
 $$ 2^{100} \bmod 2 = 0 $$
@@ -18,6 +18,6 @@ I risultati corretti sono stati trovati utilizzando il calcolatore online \texti
 Più in generale, questo metodo è utilizzabile anche per capire quante cifre successive alla posizione desiderata sono corrette.
 \newline
 
-\noindent Oltre a quelle già descritte, viene eseguita anche una semplice funzione per verificare di stare usando veramente numeri in virgola mobile da 128 bit. Il test consiste nel calcolare $\frac{1}{49} \cdot 49$ e verificare che il risultato sia 1.
+\noindent Oltre a quelle già descritte, viene eseguita anche una semplice funzione per verificare che si stiano usando effettivamente numeri in virgola mobile da 128 bit. Il test consiste nel calcolare $\frac{1}{49} \cdot 49$ e verificare che il risultato sia 1.
 
 Su sistemi a 64 bit fallirebbe poiché $\frac{1}{49}$ non è rappresentabile senza errore.
