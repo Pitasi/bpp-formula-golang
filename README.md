@@ -18,8 +18,8 @@ It mainly exports three functions:
 To use the CLI interface, you need to build and run the Go code,
 you can esily do this by  running:
 ```
-$ git clone https://github.com/Pitasi/progetto-esp
-$ cd progetto-esp/
+$ git clone https://github.com/Pitasi/bpp-formula-golang
+$ cd bpp-formula-golang/
 $ go build -o bin/esp
 $ bin/esp pi 10000
 ```
